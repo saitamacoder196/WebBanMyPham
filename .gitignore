@@ -13,3 +13,6 @@ img/tư4.jpg
 
 # Nếu muốn loại trừ tất cả file trong thư mục img
 # img/*
+
+node_modules/
+package-lock.json

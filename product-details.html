@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
-    <title>Fashion Backpack Store</title>
+    <title>Fashion Backpack Store - Product Details</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="keywords" />
     <meta content="" name="description" />
@@ -11,24 +11,15 @@
     <!-- Favicon -->
     <link rel="icon" href="img/icon-4.jpg">
 
-
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Lora:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Lora:wght@600;700&display=swap"
+        rel="stylesheet" />
 
     <!-- Icon Font Stylesheet -->
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet" />
@@ -40,431 +31,255 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/chatbot.css" rel="stylesheet">
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="spinner"
-    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-border text-primary" role="status"></div>
-</div>
-<!-- Spinner End -->
-
-<!-- Navbar Start -->
-<div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
-    <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
-        <div class="col-lg-6 px-5 text-start">
-            <small><i class="fa fa-map-marker-alt me-2"></i>123 Lê Văn Việt, Quận 9, Tp.Hồ Chí Minh</small>
-            <small class="ms-4"><i class="fa fa-envelope me-2"></i>info@example.com</small>
-        </div>
-        <div class="col-lg-6 px-5 text-end">
-            <small>Follow us:</small>
-            <a class="text-body ms-3" href=""><i class="fab fa-facebook-f"></i></a>
-            <a class="text-body ms-3" href=""><i class="fab fa-twitter"></i></a>
-            <a class="text-body ms-3" href=""><i class="fab fa-linkedin-in"></i></a>
-            <a class="text-body ms-3" href=""><i class="fab fa-instagram"></i></a>
-        </div>
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status"></div>
     </div>
+    <!-- Spinner End -->
 
-    <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
-        <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
-            <h1 class="fw-bold text-primary m-0">
-                <span class="text-secondary">
-                    <img class="logo" src="img/logo.webp" alt="Image" />
-
-                </span>
-            </h1>
-        </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
-            data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav top ms-auto p-lg-0">
-                <!-- <a href="index.html" class="nav-item nav-link active">Home</a>
-        <a href="about.html" class="nav-item nav-link">About Us</a>
-        
-        <div class="nav-item dropdown">
-          <a
-            href="#"
-            class="nav-link dropdown-toggle"
-            data-bs-toggle="dropdown"
-            >Products</a
-          >
-            <div class="dropdown-menu">
-              <a href="blog.html" class="dropdown-item">Chăm sóc da</a> 
-              <a href="feature.html" class="dropdown-item">Make Up</a>
-              <a href="testimonial.html" class="dropdown-item">Ưu đãi đặc biệt</a>
-          </div>
-        </div>
-       
-        <a href="contact.html" class="nav-item nav-link">Contact Us</a>
-         -->
-                <div class="menu" id="navar">
-                    <ul>
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li class="drop-menu">
-                            <a href="product.html">Products<span>&#11167</span></a>
-                            <div class="sub-menu">
-                                <ul>
-                                    <li>
-                                        <img class="logo-submenu" src="img/submenu.webp" alt="Image" />
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <h4 class="submenu-h4">Trang điểm</h4>
-                                    </li>
-                                    <li><a href="#">Kem nền</a> </li>
-                                    <li><a href="#">Phấn phủ</a> </li>
-                                    <li><a href="#">Phấn mắt</a> </li>
-                                    <li><a href="#">Eyeliner</a> </li>
-                                    <li><a href="#">Son môi</a> </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <h4 class="submenu-h4">Dưỡng da</h4>
-                                    </li>
-                                    <li><a href="#">Mặt nạ</a> </li>
-                                    <li><a href="#">Serum</a> </li>
-                                    <li><a href="#">Phấn mắt</a> </li>
-                                    <li><a href="#">Eyeliner</a> </li>
-                                    <li><a href="#">Tẩy trang</a> </li>
-                                </ul>
-                                <ul>
-                                    <li>
-                                        <h4 class="submenu-h4">Sản phẩm khác</h4>
-                                    </li>
-                                    <li><a href="#">Kem nền</a> </li>
-                                    <li><a href="#">Phấn phủ</a> </li>
-                                    <li><a href="#">Phấn mắt</a> </li>
-                                    <li><a href="#">Eyeliner</a> </li>
-                                    <li><a href="#">Son môi</a> </li>
-                                </ul>
-
-                            </div>
-                        </li>
-                        <li class="drop-two">
-                            <a href="#">About us <span>&#11167</span></a>
-                            <div class="menu-two">
-                                <ul>
-                                    <li><a href="contact.html">Liên hệ với chúng tôi</a> </li>
-                                    <li><a href="about.html">Về Cosmetics</a></li>
-                                    <li><a href="lie.html">Đổi trả sản phẩm</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+    <!-- Navbar Start -->
+    <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
+        <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
+            <div class="col-lg-6 px-5 text-start">
+                <small><i class="fa fa-map-marker-alt me-2"></i>123 Lê Văn Việt, Quận 9, Tp.Hồ Chí Minh</small>
+                <small class="ms-4"><i class="fa fa-envelope me-2"></i>info@example.com</small>
             </div>
-            <div class="d-none d-lg-flex ms-2">
-                <form action="" id="search-box">
-                    <input type="text" id="search-text" placeholder="Bạn muốn tìm gì?" required>
-                    <button id="search-btn"><small class="fa fa-search text-body"></small></button>
-                </form>
-
-                </a>
-                <a class="btn-sm-square bg-white rounded-circle ms-3" href="admin.html">
-                    <small class="fa fa-user text-body"></small>
-                </a>
-                <a class="btn-sm-square bg-white rounded-circle ms-3 shopping-cart-icon" href="shopping-cart.html">
-                    <small class="fa fa-shopping-bag text-body"></small>
-                    <span class="cart-count">0</span>
-                </a>
+            <div class="col-lg-6 px-5 text-end">
+                <small>Follow us:</small>
+                <a class="text-body ms-3" href=""><i class="fab fa-facebook-f"></i></a>
+                <a class="text-body ms-3" href=""><i class="fab fa-twitter"></i></a>
+                <a class="text-body ms-3" href=""><i class="fab fa-linkedin-in"></i></a>
+                <a class="text-body ms-3" href=""><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-    </nav>
-</div>
-<!-- Navbar End -->
-<!-- header -->
 
-
-<!-- Carousel Start -->
-<div class="container-fluid p-0 mb-5 wow fadeIn" data-wow-delay="0.1s">
-    <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img class="w-100" src="img/bg1.webp.png" alt="Image" />
-                <div class="carousel-caption">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-lg-7">
-                                <!-- <a
-                href=""
-                class="btn btn-secondary rounded-pill py-sm-3 px-sm-5 ms-3"
-                >XEM THÊM</a
-              > -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="w-100" src="img/bg2.webp.png" alt="Image" />
-                <div class="carousel-caption">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-lg-7">
-                                <!-- <a
-                  href=""
-                  class="btn btn-blu rounded-pill py-sm-3 px-sm-5"
-                  >XEM THÊM</a
-                > -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="w-100" src="img/bg3.webp.png" alt="Image" />
-                <div class="carousel-caption">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-lg-7">
-                                <!-- <a
-                  href=""
-                  class="btn btn-blu rounded-pill py-sm-3 px-sm-5"
-                  >XEM THÊM</a
-                > -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img class="w-100" src="img/bg4.webp.png`" alt="Image" />
-                <div class="carousel-caption">
-                    <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-lg-7">
-                                <!-- <a
-                  href=""
-                  class="btn btn-blu rounded-pill py-sm-3 px-sm-5"
-                  >XEM THÊM</a
-                > -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-</div>
-</div>
-    <main role="main">
-        <!-- Block content - Đục lỗ trên giao diện bố cục chung, đặt tên là `content` -->
-        <div class="container mt-4">
-            <div id="thongbao" class="alert alert-danger d-none face" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-
-            <div class="card">
-                <div class="container-fliud">
-                    <form name="frmsanphamchitiet" id="frmsanphamchitiet" method="post"
-                        action="/php/twig/frontend/giohang/themvaogiohang">
-                        <input type="hidden" name="sp_ma" id="sp_ma" value="5">
-                        <input type="hidden" name="sp_ten" id="sp_ten" value="Samsung Galaxy Tab 10.1 3G 16G">
-                        <input type="hidden" name="sp_gia" id="sp_gia" value="10990000.00">
-                        <input type="hidden" name="hinhdaidien" id="hinhdaidien" value="samsung-galaxy-tab-10.jpg">
-
-                        <div class="wrapper row">
-                            <div class="preview col-md-6">
-                                <div class="preview-pic tab-content">
-                                    <div class="tab-pane" id="pic-1">
-                                        <!-- <img src="img/t3sp9.webp"> -->
-                                    </div>
-                                    <div class="tab-pane" id="pic-2">
-                                        <!-- <img src="img/t3sp9.webp"> -->
-                                    </div>
-                                    <div class="tab-pane active" id="pic-3">
-                                        <!-- <img src="img/t3sp9.webp"> -->
-                                    </div>
-                                </div>
-                                <ul class="preview-thumbnail nav nav-tabs">
-                                    <li class="active">
-                                        <a data-target="#pic-1" data-toggle="tab" class="">
-                                            <!-- <img src="img/t3sp9.webp"> -->
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a data-target="#pic-2" data-toggle="tab" class="">
-                                            <!-- <img src="img/t3sp9.webp"> -->
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a data-target="#pic-3 " data-toggle="tab" class="active">
-                                            <img src="img/t3sp9.webp">
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="details col-md-6">
-                                <h3 class="product-title"> Son Dưỡng Có Màu Glow Tint Lip Balm 3.5g</h3>
-                                <div class="rating">
-                                    <div class="stars">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </div>
-                                    <span class="review-no">999 reviews</span>
-                                </div>
-                                <small class="text-muted">Giá cũ: <s><span>950.000 ₫</span></s></small>
-                                <h4 class="price">Giá hiện tại: <span>180.000 ₫</span></h4>
-                                <p class="vote"><strong>100%</strong> hàng <strong>Chất lượng</strong>, đảm bảo
-                                    <strong>Uy tín</strong>!</p>
-                                <h5 class="colors">colors:
-                                    <span class="color orange not-available" data-toggle="tooltip"
-                                        title="Hết hàng"></span>
-                                    <button class="color">#1</button>
-                                    <button class="color">#2</button>
-                                    <button class="color">#3</button>
-                                    <button class="color">#4</button>
-                                    <button class="color">#5</button>
-                                </h5>
-                                <div class="form-group">
-                                    <label for="soluong">Số lượng đặt mua:</label>
-                                    <input type="number" class="form-control" id="soluong" name="soluong">
-                                </div>
-                                <div class="action">
-                                    <a class="text-body add-to-cart" href="#" data-id="1" data-name="Urban Black Backpack" data-price="350000" data-image="img/c1.jpg"><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
-                                    <a class="like btn  border-2 py-2 px-4 mt-2 rounded-pill" href="#"><span class="fa fa-heart"></span></a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="container-fluid">
-                    <h3>Thông tin chi tiết về Sản phẩm</h3>
-                    <div class="row">
-                        <div class="col">
-                            LƯU Ý: màu son mỗi người dùng sẽ có mỗi khác mọi người nha.
-<br>🌺Là 1 thỏi son với hiệu ứng 2 trong 1:
-<br>➖Lên màu vivid tint cực đẹp lấy cảm hứng từ màu sắc của từng cánh hoa.
-<br>➖Lần đầu tiên 1 thỏi son tint chứa đựng thành phần dưỡng môi đáng kinh ngạc. Bao gồm rosehip oil, rose water và acacia collagen phục hồi làn môi thâm, nứt nẻ một cách hoàn hảo.
-<br>🌺Rosehip Oil chính là tinh dầu Tầm Xuân – đây là một loại tinh dầu thích hợp dùng cho làn môi nứt nẻ, hằn sâu, nhiều vết thâm và thường xuyên mất nước.
-<br>🌺Omega 3, Omega 6 và các a-xít béo thiết yếu: Các hợp chất lipid (chất béo) trong các chất này là nhân tố quan trọng trong quá trình dưỡng ẩm đối với làn môi khô và cải thiện độ mềm mại và độ đàn hồi của môi. Các axit béo thiết yếu rất quan trọng đối với sức khỏe của da của chúng ta, tuy nhiên cơ thể của chúng ta lại không thể tạo ra chúng – vì vậy dưỡng chất này giống như bổ sung những gì còn thiếu cho làn da, làm thỏa mãn “cơn khát”
-<br>🌺Acacia Collagen : là một kết hợp giữa collagen và Phyto, có tính chất làm se, kích thích các tế bào da sản xuất thêm collagen. Giúp làn da môi phục hồi nhanh chóng và giữ suốt 24h.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End block content -->
-    </main>
-
-   
-    <!-- Blog End -->
-
-    <!-- Footer Start -->
-    <div
-    class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn"
-    data-wow-delay="0.1s"
-  >
-    <div class="container py-5">
-      <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
-                <h1 class="fw-bold text-primary mb-4">
+        <nav class="navbar navbar-expand-lg navbar-light py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+            <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
+                <h1 class="fw-bold text-primary m-0">
                     <span class="text-secondary">
-                        <img class="logo" src="img/logo.webp" alt="Image" />
+                        <img class="logo" src="img/logo.png" alt="Image" />
                     </span>
                 </h1>
-                <p>
-                    We hope our products will make you feel more satisfied and comfortable.
-                </p>
-                <div class="d-flex pt-2">
-                    <a
-                    class="btn btn-square btn-outline-light rounded-circle me-1"
-                    href=""
-                    ><i class="fab fa-twitter"></i
-                    ></a>
-                    <a
-                    class="btn btn-square btn-outline-light rounded-circle me-1"
-                    href=""
-                    ><i class="fab fa-facebook-f"></i
-                    ></a>
-                    <a
-                    class="btn btn-square btn-outline-light rounded-circle me-1"
-                    href=""
-                    ><i class="fab fa-youtube"></i
-                    ></a>
-                    <a
-                    class="btn btn-square btn-outline-light rounded-circle me-0"
-                    href=""
-                    ><i class="fab fa-linkedin-in"></i
-                    ></a>
+            </a>
+            <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav top ms-auto p-lg-0">
+                    <div class="menu" id="navar">
+                        <ul>
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li class="drop-menu">
+                                <a href="product.html">Products<span>&#11167</span></a>
+                                <div class="sub-menu">
+                                    <ul>
+                                        <li>
+                                            <img class="logo-submenu" src="img/submenu.webp" alt="Image" />
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <h4 class="submenu-h4">Women's handbags</h4>
+                                        </li>
+                                        <li><a href="product.html">All Products</a> </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <h4 class="submenu-h4">Fashion backpack</h4>
+                                        </li>
+                                        <li><a href="product.html">All Products</a> </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <h4 class="submenu-h4">Other Products</h4>
+                                        </li>
+                                        <li><a href="product.html">All Products</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="drop-two">
+                                <a href="#">About us <span>&#11167</span></a>
+                                <div class="menu-two">
+                                    <ul>
+                                        <li><a href="contact.html">Contact Us</a> </li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="lie.html">Returns & Exchanges</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-none d-lg-flex ms-2">
+                    <form action="" id="search-box">
+                        <input type="text" id="search-text" placeholder="What are you looking for?" required>
+                        <button id="search-btn"><small class="fa fa-search text-body"></small></button>
+                    </form>
+
+                    </a>
+                    <a class="btn-sm-square bg-white rounded-circle ms-3" href="admin.html">
+                        <small class="fa fa-user text-body"></small>
+                    </a>
+                    <a class="btn-sm-square bg-white rounded-circle ms-3 shopping-cart-icon" href="shopping-cart.html">
+                        <small class="fa fa-shopping-bag text-body"></small>
+                        <span class="cart-count">0</span>
+                    </a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-            <h4 class="text-light mb-4">Address</h4>
-            <p>
-                <i class="fa fa-map-marker-alt me-3"></i>123  Le Van Viet Street, dictrict 9, Ho Chi minh city
-            </p>
-            <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-            <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-            </div>
-            <div class="col-lg-3 col-md-6">
-            <h4 class="text-light mb-4">Quick Links</h4>
-            <a class="btn btn-link" href="index.html">Home</a>
-            <a class="btn btn-link" href="product.html">Products</a>
-            <a class="btn btn-link" href="contact.html">About Us</a>
-            <!-- <a class="btn btn-link" href="">Our Services</a>
-            <a class="btn btn-link" href="">Terms & Condition</a>
-            <a class="btn btn-link" href="">Support</a> -->
-            </div>
-            <div class="col-lg-3 col-md-6">
-            <h4 class="text-light mb-4">Newsletter</h4>
-            <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-            <div class="position-relative mx-auto" style="max-width: 400px">
-                <input
-                class="form-control bg-transparent w-100 py-3 ps-4 pe-5"
-                type="text"
-                placeholder="Your email"
-                />
-                <button
-                type="button"
-                class="btn btn-red py-2 position-absolute top-0 end-0 mt-2 me-2"
-                >
-                SignUp
-                </button>
-            </div>
-            </div>
-        </div>
+        </nav>
     </div>
-    <div class="container-fluid copyright">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 text-md-start mb-3 mb-md-0">
-            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Footer End -->
+    <!-- Navbar End -->
 
-  <!-- Back to Top -->
-  <a
-    href="#"
-    class="btn btn-lg btn-pink btn-lg-square rounded-circle back-to-top"
-    ><i class="bi bi-arrow-up"></i
-  ></a>
+    <main role="main">
+        <!-- Product Details Content -->
+        <div class="container mt-5 pt-5">
+            <div id="productLoadingSpinner" class="text-center my-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <div id="productDetailsContainer" class="card d-none">
+                <div class="container-fliud">
+                    <div class="wrapper row">
+                        <div class="preview col-md-6">
+                            <div class="preview-pic tab-content">
+                                <div class="tab-pane active" id="product-image">
+                                    <img src="" alt="Product Image" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="details col-md-6">
+                            <h3 class="product-title">Loading product...</h3>
+                            <div class="rating">
+                                <div class="stars">
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star checked"></span>
+                                    <span class="fa fa-star"></span>
+                                </div>
+                                <span class="review-no">41 reviews</span>
+                            </div>
+                            <div class="price-container">
+                                <small class="text-muted original-price">Original price: <s><span>0</span></s></small>
+                                <h4 class="current-price">Current price: <span>0</span></h4>
+                            </div>
+                            <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87
+                                    votes)</strong></p>
+                            <div class="form-group">
+                                <label for="productQuantity">Quantity:</label>
+                                <input type="number" class="form-control" id="productQuantity" name="quantity" value="1"
+                                    min="1">
+                            </div>
+                            <div class="action mt-4">
+                                <button id="addToCartBtn" class="btn btn-primary rounded-pill py-2 px-4">
+                                    <i class="fa fa-shopping-bag text-white me-2"></i>Add to cart
+                                </button>
+                                <button class="btn btn-outline-primary rounded-pill py-2 px-4 ms-2">
+                                    <i class="fa fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="productDescriptionContainer" class="card mt-4 d-none">
+                <div class="container-fluid p-4">
+                    <h3>Product Description</h3>
+                    <div class="row">
+                        <div class="col product-description">
+                            Loading description...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="container-fluid bg-light py-5 mt-5">
+                <div class="container">
+                    <h3 class="text-center mb-4">You May Also Like</h3>
+                    <div class="row g-4" id="relatedProductsContainer">
+                        <!-- Related products will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h1 class="fw-bold text-primary mb-4">
+                        <span class="text-secondary">
+                            <img class="logo" src="img/logo.png" alt="Image" />
+                        </span>
+                    </h1>
+                    <p>
+                        We hope our products will make you feel more satisfied and comfortable.
+                    </p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i
+                                class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-1" href=""><i
+                                class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-0" href=""><i
+                                class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Address</h4>
+                    <p>
+                        <i class="fa fa-map-marker-alt me-3"></i>123 Le Van Viet Street, District 9, Ho Chi Minh City
+                    </p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="index.html">Home</a>
+                    <a class="btn btn-link" href="product.html">Products</a>
+                    <a class="btn btn-link" href="contact.html">About Us</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Newsletter</h4>
+                    <p>Subscribe to our newsletter for updates.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px">
+                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text"
+                            placeholder="Your email" />
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">
+                            SignUp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-md-start mb-3 mb-md-0">
+                        &copy; <a href="#">Fashion Backpack Store</a>, All Right Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i
+            class="bi bi-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -474,10 +289,12 @@
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <!-- Template Javascript -->
+    <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
     <script src="js/chatbot.js"></script>
+    <script src="js/api.js"></script>
     <script src="js/cart.js"></script>
-  </body>
+    <script src="js/product-details.js"></script>
+</body>
 
 </html>

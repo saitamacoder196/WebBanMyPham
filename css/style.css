@@ -1251,3 +1251,101 @@ transition: all;
 .checkout-btn:hover {
   background-color: #e5635a;
 }
+
+/* Product Carousel Styling */
+.carousel-product-item {
+  margin: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  height: 100%;
+  max-width: 280px;
+}
+
+.carousel-product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-img-container {
+  height: 180px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+}
+
+.product-img-container img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.discount-badge {
+  font-size: 0.75rem;
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+.product-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  height: 2.4rem;
+  overflow: hidden;
+}
+
+.product-title a {
+  text-decoration: none;
+}
+
+.product-title a:hover {
+  color: var(--primary) !important;
+}
+
+.product-price {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* Adjust the carousel navigation */
+.testimonial-carousel .owl-nav {
+  margin-top: 15px;
+}
+
+.testimonial-carousel .owl-nav button.owl-prev,
+.testimonial-carousel .owl-nav button.owl-next {
+  width: 36px;
+  height: 36px;
+  background-color: var(--light);
+  border-radius: 50%;
+  font-size: 1rem;
+  color: var(--primary);
+  transition: all 0.3s;
+  margin: 0 5px;
+}
+
+.testimonial-carousel .owl-nav button.owl-prev:hover,
+.testimonial-carousel .owl-nav button.owl-next:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Make the carousel responsive */
+@media (max-width: 767px) {
+  .carousel-product-item {
+    max-width: 220px;
+  }
+  
+  .product-img-container {
+    height: 150px;
+  }
+  
+  .product-title {
+    font-size: 0.85rem;
+    height: 2rem;
+  }
+  
+  .product-price {
+    font-size: 0.8rem;
+  }
+}

@@ -27,10 +27,10 @@ function getCategoryFromTabId(tabId) {
 }
 
 // Hàm tải sản phẩm từ API
-function loadProducts(category = 'travel-backpack') {
-    // Thay đổi URL để trỏ đến đúng cổng server đang chạy
-    const baseUrl = 'http://localhost:3000'; // Thay đổi thành đúng URL server của bạn
-    const apiUrl = category ? `${baseUrl}/api/products?category=${category}` : `${baseUrl}/api/products`;
+function loadProducts(category = null) {
+    // Remove category filtering temporarily to see if products load
+    const baseUrl = 'http://localhost:3000';
+    const apiUrl = `${baseUrl}/api/products`;
     
     fetch(apiUrl)
         .then(response => {
@@ -40,17 +40,11 @@ function loadProducts(category = 'travel-backpack') {
             return response.json();
         })
         .then(data => {
-            // Xác định tab nào đang active
-            const activeTabId = category ? getTabIdFromCategory(category) : '#tab-1';
-            const tabContent = document.querySelector(activeTabId);
-            
-            if (tabContent) {
-                renderProducts(tabContent, data.products);
-            }
+            console.log('Products received:', data.products);
+            // Rest of your code...
         })
         .catch(error => {
             console.error('Error loading products:', error);
-            alert('Không thể tải sản phẩm. Vui lòng thử lại sau.');
         });
 }
 

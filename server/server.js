@@ -2,8 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
 
-// Khởi tạo Express app
+// Initialize Express app
 const app = express();
 const port = 3000;
 
@@ -12,14 +13,17 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Khởi tạo database SQLite
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, '../')));
+
+// Initialize SQLite database
 const db = new sqlite3.Database('./shopping_cart.db', (err) => {
     if (err) {
-        console.error('Không thể kết nối đến database:', err.message);
+        console.error('Unable to connect to database:', err.message);
     } else {
-        console.log('Đã kết nối đến database SQLite');
+        console.log('Connected to SQLite database');
         
-        // Tạo bảng cart_items nếu chưa tồn tại
+        // Create cart_items table if it doesn't exist
         db.run(`CREATE TABLE IF NOT EXISTS cart_items (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             product_id INTEGER NOT NULL,
@@ -31,6 +35,7 @@ const db = new sqlite3.Database('./shopping_cart.db', (err) => {
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )`);
 
+        // Create products table if it doesn't exist
         db.run(`CREATE TABLE IF NOT EXISTS products (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
@@ -48,7 +53,7 @@ const db = new sqlite3.Database('./shopping_cart.db', (err) => {
 
 // API Routes
 
-// Lấy tất cả sản phẩm trong giỏ hàng
+// Get all products in cart
 app.get('/api/cart/:sessionId', (req, res) => {
     const { sessionId } = req.params;
     
@@ -60,18 +65,18 @@ app.get('/api/cart/:sessionId', (req, res) => {
     });
 });
 
-// Thêm sản phẩm vào giỏ hàng
+// Add product to cart
 app.post('/api/cart', (req, res) => {
     const { product_id, product_name, product_price, product_image, quantity, session_id } = req.body;
     
-    // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+    // Check if product already exists in cart
     db.get(`SELECT * FROM cart_items WHERE product_id = ? AND session_id = ?`, [product_id, session_id], (err, row) => {
         if (err) {
             return res.status(500).json({ error: err.message });
         }
         
         if (row) {
-            // Nếu sản phẩm đã tồn tại, tăng số lượng
+            // If product exists, increase quantity
             const newQuantity = row.quantity + (quantity || 1);
             
             db.run(`UPDATE cart_items SET quantity = ? WHERE id = ?`, [newQuantity, row.id], function(err) {
@@ -82,7 +87,7 @@ app.post('/api/cart', (req, res) => {
                 res.json({ success: true, id: row.id, action: 'updated' });
             });
         } else {
-            // Nếu sản phẩm chưa tồn tại, thêm mới
+            // If product doesn't exist, add new item
             db.run(
                 `INSERT INTO cart_items (product_id, product_name, product_price, product_image, quantity, session_id) 
                  VALUES (?, ?, ?, ?, ?, ?)`,
@@ -99,7 +104,7 @@ app.post('/api/cart', (req, res) => {
     });
 });
 
-// Cập nhật số lượng sản phẩm
+// Update product quantity in cart
 app.put('/api/cart/:id', (req, res) => {
     const { id } = req.params;
     const { quantity, session_id } = req.body;
@@ -113,7 +118,7 @@ app.put('/api/cart/:id', (req, res) => {
             }
             
             if (this.changes === 0) {
-                return res.status(404).json({ error: 'Không tìm thấy sản phẩm hoặc không có quyền truy cập' });
+                return res.status(404).json({ error: 'Product not found or access denied' });
             }
             
             res.json({ success: true });
@@ -121,7 +126,7 @@ app.put('/api/cart/:id', (req, res) => {
     );
 });
 
-// Xóa sản phẩm khỏi giỏ hàng
+// Remove product from cart
 app.delete('/api/cart/:id', (req, res) => {
     const { id } = req.params;
     const { session_id } = req.body;
@@ -135,7 +140,7 @@ app.delete('/api/cart/:id', (req, res) => {
             }
             
             if (this.changes === 0) {
-                return res.status(404).json({ error: 'Không tìm thấy sản phẩm hoặc không có quyền truy cập' });
+                return res.status(404).json({ error: 'Product not found or access denied' });
             }
             
             res.json({ success: true });
@@ -143,7 +148,7 @@ app.delete('/api/cart/:id', (req, res) => {
     );
 });
 
-// Xóa tất cả sản phẩm trong giỏ hàng
+// Clear cart
 app.delete('/api/cart/clear/:sessionId', (req, res) => {
     const { sessionId } = req.params;
     
@@ -156,9 +161,9 @@ app.delete('/api/cart/clear/:sessionId', (req, res) => {
     });
 });
 
-// Lấy tất cả sản phẩm hoặc lấy theo danh mục
+// Get all products or filter by category
 app.get('/api/products', (req, res) => {
-    const { category } = req.query;
+    const { category, limit } = req.query;
     
     let query = 'SELECT * FROM products';
     let params = [];
@@ -166,17 +171,27 @@ app.get('/api/products', (req, res) => {
     if (category) {
         query += ' WHERE category = ?';
         params.push(category);
+        console.log(`Searching for products with category: ${category}`);
     }
+    
+    if (limit) {
+        query += ' LIMIT ?';
+        params.push(parseInt(limit));
+    }
+    
+    console.log(`Executing query: ${query} with params: ${params}`);
     
     db.all(query, params, (err, rows) => {
         if (err) {
+            console.error('Database error:', err);
             return res.status(500).json({ error: err.message });
         }
+        console.log(`Found ${rows.length} products`);
         res.json({ products: rows });
     });
 });
 
-// Lấy chi tiết sản phẩm theo ID
+// Get product by ID
 app.get('/api/products/:id', (req, res) => {
     const { id } = req.params;
     
@@ -185,13 +200,13 @@ app.get('/api/products/:id', (req, res) => {
             return res.status(500).json({ error: err.message });
         }
         if (!row) {
-            return res.status(404).json({ error: 'Sản phẩm không tồn tại' });
+            return res.status(404).json({ error: 'Product not found' });
         }
         res.json({ product: row });
     });
 });
 
-// Thêm sản phẩm mới (chỉ admin)
+// Add new product (admin only)
 app.post('/api/products', (req, res) => {
     const { name, price, original_price, image, category, description, is_new, discount_percent } = req.body;
     
@@ -209,7 +224,64 @@ app.post('/api/products', (req, res) => {
     );
 });
 
-// Khởi động server
+// Update product (admin only)
+app.put('/api/products/:id', (req, res) => {
+    const { id } = req.params;
+    const { name, price, original_price, image, category, description, is_new, discount_percent } = req.body;
+    
+    db.run(
+        `UPDATE products SET 
+            name = ?, 
+            price = ?, 
+            original_price = ?, 
+            image = ?, 
+            category = ?, 
+            description = ?, 
+            is_new = ?, 
+            discount_percent = ? 
+         WHERE id = ?`,
+        [name, price, original_price || null, image, category, description || null, is_new || 1, discount_percent || null, id],
+        function(err) {
+            if (err) {
+                return res.status(500).json({ error: err.message });
+            }
+            
+            if (this.changes === 0) {
+                return res.status(404).json({ error: 'Product not found' });
+            }
+            
+            res.json({ success: true });
+        }
+    );
+});
+
+// Delete product (admin only)
+app.delete('/api/products/:id', (req, res) => {
+    const { id } = req.params;
+    
+    db.run('DELETE FROM products WHERE id = ?', [id], function(err) {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        
+        if (this.changes === 0) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+        
+        res.json({ success: true });
+    });
+});
+
+// Handle HTML routes
+app.get('/product-details.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../product-details.html'));
+});
+
+app.get('/shopping-cart.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../shopping-cart.html'));
+});
+
+// Start server
 app.listen(port, () => {
-    console.log(`Server đang chạy tại http://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });
