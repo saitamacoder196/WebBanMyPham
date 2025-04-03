@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Load recommended/related products for the carousel
-    loadRelatedProducts();
+    // loadRelatedProducts();
 
     // Setup cart functionality
     setupAddToCartButtons();
@@ -217,11 +217,17 @@ function displayProducts(container, products) {
 /**
  * Loads related products for the carousel
  */
+/**
+ * Loads related products for the carousel with compact design
+ */
+/**
+ * Loads related products for the carousel matching the existing design pattern
+ */
 function loadRelatedProducts() {
     const carousel = document.querySelector('.testimonial-carousel');
     if (!carousel) return;
 
-    fetch('http://localhost:3000/api/products?limit=6')
+    fetch('http://localhost:3000/api/products?limit=8')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -234,39 +240,31 @@ function loadRelatedProducts() {
 
             products.forEach(product => {
                 const originalPrice = product.original_price 
-                    ? `<span class="text-body text-decoration-line-through">${formatPrice(product.original_price)} đ</span>` 
+                    ? `<span class="text-body text-decoration-line-through">${formatPrice(product.original_price)} ₫</span>` 
                     : '';
-                
-                const discountBadge = product.discount_percent 
-                    ? `<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">-${product.discount_percent}%</div>`
-                    : `<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>`;
             
                 carouselHTML += `
-                    <div class="item">
-                        <div class="product-item">
-                            <div class="position-relative bg-light overflow-hidden">
-                                <img class="img-fluid w-100" src="${product.image}" alt="${product.name}">
-                                ${discountBadge}
-                            </div>
-                            <div class="text-center p-4">
-                                <a class="d-block h5 mb-2" href="product-details.html?id=${product.id}">${product.name}</a>
-                                <span class="text-primary me-1">${formatPrice(product.price)} đ</span>
-                                ${originalPrice}
-                            </div>
-                            <div class="d-flex border-top">
-                                <small class="w-50 text-center border-end py-2">
-                                    <a class="text-body" href="product-details.html?id=${product.id}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
-                                </small>
-                                <small class="w-50 text-center py-2">
-                                    <a class="text-body add-to-cart" href="#" 
-                                       data-id="${product.id}" 
-                                       data-name="${product.name}" 
-                                       data-price="${product.price}" 
-                                       data-image="${product.image}">
-                                        <i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart
-                                    </a>
-                                </small>
-                            </div>
+                    <div class="position-relative bg-white p-5 mt-4">
+                        <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
+                        <img class="" src="${product.image}" alt="${product.name}">
+                        <div class="text-center p-4">
+                            <a class="d-block h5 mb-2" href="product-details.html?id=${product.id}">${product.name}</a>
+                            <span class="text-primary me-1">${formatPrice(product.price)} ₫</span>
+                            ${originalPrice}
+                        </div>
+                        <div class="d-flex border-top">
+                            <small class="w-50 text-center border-end py-2">
+                                <a class="text-body" href="product-details.html?id=${product.id}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                            </small>
+                            <small class="w-50 text-center py-2">
+                                <a class="text-body add-to-cart" href="#" 
+                                   data-id="${product.id}" 
+                                   data-name="${product.name}" 
+                                   data-price="${product.price}" 
+                                   data-image="${product.image}">
+                                    <i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart
+                                </a>
+                            </small>
                         </div>
                     </div>
                 `;
@@ -280,7 +278,7 @@ function loadRelatedProducts() {
                 smartSpeed: 1000,
                 margin: 25,
                 loop: true,
-                center: false,
+                center: true,
                 dots: false,
                 nav: true,
                 navText: [
@@ -291,20 +289,15 @@ function loadRelatedProducts() {
                     0: {
                         items: 1
                     },
-                    576: {
-                        items: 2,
-                        margin: 15
-                    },
                     768: {
-                        items: 3,
-                        margin: 20
+                        items: 2
                     },
                     992: {
-                        items: 4,
-                        margin: 25
+                        items: 3
                     }
                 }
             });
+            
             // Setup add to cart buttons
             setupAddToCartButtons();
         })

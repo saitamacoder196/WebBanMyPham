@@ -896,10 +896,11 @@ border: 1px solid red;
 transition: all;
 }
 
+
 /* Cart Badge & Icon Styling */
 .shopping-cart-icon {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .cart-count {

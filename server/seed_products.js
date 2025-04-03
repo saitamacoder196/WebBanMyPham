@@ -243,6 +243,26 @@ const products = [
       description: "Sữa rửa mặt chống lão hóa Naris",
       is_new: 0,
       discount_percent: 20
+    },
+    {
+      name: "Tomtoc Versatile Women's Handbag",
+      price: 75000,
+      original_price: 130000,
+      image: "img/b7 (1).jpg",
+      category: "women-handbag",
+      description: "Túi xách nữ đa năng Tomtoc",
+      is_new: 1,
+      discount_percent: 42
+    },
+    {
+      name: "Tomtoc Versatile Women's Handbag",
+      price: 59000,
+      original_price: 70000,
+      image: "img/b8.jpg",
+      category: "women-handbag",
+      description: "Túi xách nữ đa năng Tomtoc",
+      is_new: 1,
+      discount_percent: 16
     }
   ];
 
