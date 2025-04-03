@@ -18,7 +18,7 @@ const relevantKeywords = [
 ];
 
 const openaiConfig = {
-    apiKey: 'YOUR_API_KEY_HERE', // thay thế api key 
+    apiKey: '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', // thay thế api key 
     endpoint: 'https://api.openai.com/v1/chat/completions',
     model: 'gpt-3.5-turbo'
 };
@@ -220,7 +220,7 @@ async function callOpenAI(prompt) {
                         content: prompt
                     }
                 ],
-                max_tokens: 150,
+                max_tokens: 300,
                 temperature: 0.7
             })
         });

@@ -1,19 +1,17 @@
 // Khởi tạo các biến và sự kiện khi document đã sẵn sàng
+// Khởi tạo các biến và sự kiện khi document đã sẵn sàng
 document.addEventListener('DOMContentLoaded', function() {
-    // Khởi tạo database
-    DB.init().then(() => {
-        console.log('IndexedDB initialized successfully');
-        
+    // Kiểm tra xem API đã được định nghĩa chưa
+    if (typeof API !== 'undefined') {
         // Load giỏ hàng khi trang web được tải
         loadCart();
         
         // Thêm sự kiện cho các nút "Add to cart"
         setupAddToCartButtons();
-    }).catch(error => {
-        console.error('Failed to initialize database:', error);
-    });
+    } else {
+        console.error('API is not defined. Make sure api.js is loaded correctly.');
+    }
 });
-
 // Biến toàn cục để lưu trữ dữ liệu giỏ hàng
 let cartData = {
     items: [],
@@ -23,7 +21,7 @@ let cartData = {
 
 // Hàm tải giỏ hàng từ IndexedDB
 function loadCart() {
-    DB.getCartItems().then(items => {
+    API.getCartItems().then(items => {
         cartData.items = items;
         cartData.totalItems = items.reduce((total, item) => total + item.quantity, 0);
         cartData.totalPrice = items.reduce((total, item) => total + (item.product_price * item.quantity), 0);
@@ -55,6 +53,7 @@ function setupAddToCartButtons() {
     });
 }
 
+
 // Hàm thêm sản phẩm vào giỏ hàng
 function addToCart(productId, productName, productPrice, productImage, quantity = 1) {
     // Tạo đối tượng sản phẩm
@@ -66,8 +65,8 @@ function addToCart(productId, productName, productPrice, productImage, quantity 
         quantity: quantity
     };
     
-    // Thêm vào database
-    DB.addToCart(product).then(result => {
+    // Thêm vào database thông qua API
+    API.addToCart(product).then(result => {
         // Thông báo thành công
         if (result.action === 'added') {
             showNotification('Sản phẩm đã được thêm vào giỏ hàng');
@@ -83,6 +82,7 @@ function addToCart(productId, productName, productPrice, productImage, quantity 
     });
 }
 
+
 // Hàm cập nhật số lượng sản phẩm
 function updateQuantity(itemId, newQuantity) {
     if (newQuantity < 1) {
@@ -90,7 +90,7 @@ function updateQuantity(itemId, newQuantity) {
         return;
     }
     
-    DB.updateQuantity(itemId, newQuantity).then(() => {
+    API.updateQuantity(itemId, newQuantity).then(() => {
         loadCart();
     }).catch(error => {
         console.error('Error updating quantity:', error);
@@ -98,9 +98,10 @@ function updateQuantity(itemId, newQuantity) {
     });
 }
 
+
 // Hàm xóa sản phẩm khỏi giỏ hàng
 function removeFromCart(itemId) {
-    DB.removeFromCart(itemId).then(() => {
+    API.removeFromCart(itemId).then(() => {
         loadCart();
         showNotification('Sản phẩm đã được xóa khỏi giỏ hàng');
     }).catch(error => {
@@ -109,8 +110,11 @@ function removeFromCart(itemId) {
     });
 }
 
+
 // Hàm cập nhật giao diện giỏ hàng
 function updateCartUI() {
+    console.log('Updating cart UI with items:', cartData.totalItems);
+    
     // Cập nhật số lượng sản phẩm trên icon giỏ hàng
     const cartCountElements = document.querySelectorAll('.cart-count');
     cartCountElements.forEach(element => {
@@ -223,6 +227,8 @@ function formatPrice(price) {
 
 // Hàm hiển thị thông báo
 function showNotification(message, type = 'success') {
+    console.log('Notification:', message, type);
+    
     // Kiểm tra xem đã có phần tử notification chưa
     let notification = document.querySelector('.notification');
     
