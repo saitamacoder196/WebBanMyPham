@@ -1,0 +1,15 @@
+# Ignore all image files in the img directory
+img/*.jpg
+img/*.jpeg
+img/*.png
+img/*.webp
+img/*.PNG
+img/*.gif
+img/*.svg
+img/*.ico
+img/*.webp.png
+img/owl.video.play.png
+img/tư4.jpg
+
+# Nếu muốn loại trừ tất cả file trong thư mục img
+# img/*
