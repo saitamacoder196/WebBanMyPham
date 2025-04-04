@@ -1,20 +1,20 @@
-// product-loader.js - Handles loading and displaying products from the database
-// Define the category mapping for each tab globally so it can be accessed by all functions
+
+
 const categoryMapping = {
     '#tab-1': ['handbag', 'women-handbag'],
     '#tab-2': ['backpack', 'fashion-backpack', 'travel-backpack'],
     '#tab-3': ['accessories', 'other']
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Load initial products for the active tab
+document.addEventListener('DOMContentLoaded', function () {
+
     const activeTab = document.querySelector('.nav-pills .active');
     if (activeTab) {
         const tabId = activeTab.getAttribute('href');
         loadProductsByTab(tabId);
     }
 
-    // Add event listeners for tab changes
+
     const productTabs = document.querySelectorAll('[data-bs-toggle="pill"]');
     productTabs.forEach(tab => {
         tab.addEventListener('shown.bs.tab', function (event) {
@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Load recommended/related products for the carousel
-    // loadRelatedProducts();
 
-    // Setup cart functionality
+
+
+
     setupAddToCartButtons();
 });
 
@@ -37,13 +37,13 @@ document.addEventListener('DOMContentLoaded', function() {
 function loadProductsByTab(tabId) {
     const containerSelector = getContainerSelectorForTab(tabId);
     const container = document.querySelector(containerSelector);
-    
+
     if (!container) {
         console.error(`Container not found for tab: ${tabId}`);
         return;
     }
 
-    // Show loading indicator
+
     container.innerHTML = `
         <div class="col-12 text-center">
             <div class="spinner-border text-primary" role="status">
@@ -52,12 +52,12 @@ function loadProductsByTab(tabId) {
         </div>
     `;
 
-    // Get the categories for this tab
+
     const categories = getCategoriesForTab(tabId);
-    
-    // Debug info
+
+
     console.log(`Loading products for tab ${tabId} with categories:`, categories);
-    
+
     fetchProducts(categories)
         .then(products => {
             console.log(`Loaded ${products.length} products for tab ${tabId}`);
@@ -113,7 +113,7 @@ function getCategoriesForTab(tabId) {
  */
 async function fetchProducts(categories) {
     if (!categories || categories.length === 0) {
-        // If no categories specified, fetch all products
+
         try {
             const response = await fetch(`http://localhost:3000/api/products`);
             if (!response.ok) {
@@ -126,26 +126,26 @@ async function fetchProducts(categories) {
             throw error;
         }
     }
-    
-    // If we have categories to filter by
+
+
     const baseUrl = 'http://localhost:3000/api/products';
     const allProducts = [];
-    
+
     try {
-        // Fetch each category separately to prevent stream reading errors
+
         for (const category of categories) {
             const response = await fetch(`${baseUrl}?category=${category}`);
             if (!response.ok) {
                 console.warn(`Failed to fetch products for category "${category}"`);
                 continue;
             }
-            
+
             const data = await response.json();
             if (data.products && Array.isArray(data.products)) {
                 allProducts.push(...data.products);
             }
         }
-        
+
         return allProducts;
     } catch (error) {
         console.error('Error fetching products by categories:', error);
@@ -172,11 +172,11 @@ function displayProducts(container, products) {
 
     products.forEach((product, index) => {
         const delay = 0.1 + (index % 4) * 0.2;
-        const discountBadge = product.discount_percent 
+        const discountBadge = product.discount_percent
             ? `<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">-${product.discount_percent}%</div>`
             : `<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>`;
 
-        const originalPrice = product.original_price 
+        const originalPrice = product.original_price
             ? `<span class="text-body text-decoration-line-through">${formatPrice(product.original_price)} đ</span>`
             : '';
 
@@ -207,10 +207,10 @@ function displayProducts(container, products) {
 
     container.innerHTML = productsHTML;
 
-    // Initialize WOW animations
+
     new WOW().init();
-    
-    // Setup add to cart buttons
+
+
     setupAddToCartButtons();
 }
 
@@ -239,10 +239,10 @@ function loadRelatedProducts() {
             const products = data.products || [];
 
             products.forEach(product => {
-                const originalPrice = product.original_price 
-                    ? `<span class="text-body text-decoration-line-through">${formatPrice(product.original_price)} ₫</span>` 
+                const originalPrice = product.original_price
+                    ? `<span class="text-body text-decoration-line-through">${formatPrice(product.original_price)} ₫</span>`
                     : '';
-            
+
                 carouselHTML += `
                     <div class="position-relative bg-white p-5 mt-4">
                         <i class="fa fa-quote-left fa-3x text-primary position-absolute top-0 start-0 mt-n4 ms-5"></i>
@@ -268,11 +268,11 @@ function loadRelatedProducts() {
                         </div>
                     </div>
                 `;
-            });        
+            });
 
             carousel.innerHTML = carouselHTML;
 
-            // Initialize Owl Carousel
+
             $(carousel).owlCarousel({
                 autoplay: true,
                 smartSpeed: 1000,
@@ -297,8 +297,8 @@ function loadRelatedProducts() {
                     }
                 }
             });
-            
-            // Setup add to cart buttons
+
+
             setupAddToCartButtons();
         })
         .catch(error => {
@@ -312,21 +312,21 @@ function loadRelatedProducts() {
  */
 function setupAddToCartButtons() {
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
-    
+
     addToCartButtons.forEach(button => {
-        // Remove existing event listeners to prevent duplicates
+
         const newButton = button.cloneNode(true);
         button.parentNode.replaceChild(newButton, button);
-        
-        newButton.addEventListener('click', function(event) {
+
+        newButton.addEventListener('click', function (event) {
             event.preventDefault();
-            
+
             const productId = parseInt(this.getAttribute('data-id'));
             const productName = this.getAttribute('data-name');
             const productPrice = parseFloat(this.getAttribute('data-price'));
             const productImage = this.getAttribute('data-image');
-            
-            // Add the product to cart
+
+
             addToCart(productId, productName, productPrice, productImage);
         });
     });
@@ -341,7 +341,7 @@ function setupAddToCartButtons() {
  * @param {number} quantity - Quantity to add (default: 1)
  */
 function addToCart(productId, productName, productPrice, productImage, quantity = 1) {
-    // Create a product object
+
     const product = {
         product_id: productId,
         product_name: productName,
@@ -349,13 +349,13 @@ function addToCart(productId, productName, productPrice, productImage, quantity 
         product_image: productImage,
         quantity: quantity
     };
-    
-    // Add to database through API
+
+
     API.addToCart(product).then(result => {
-        // Show success notification
+
         showNotification(`Product "${productName}" added to cart!`, 'success');
-        
-        // Refresh cart icon count
+
+
         loadCart();
     }).catch(error => {
         console.error('Error adding to cart:', error);
@@ -378,24 +378,24 @@ function formatPrice(price) {
  * @param {string} type - The notification type ('success' or 'error')
  */
 function showNotification(message, type = 'success') {
-    // Check if notification element exists
+
     let notification = document.querySelector('.notification');
-    
+
     if (!notification) {
-        // Create notification element if it doesn't exist
+
         notification = document.createElement('div');
         notification.className = 'notification';
         document.body.appendChild(notification);
     }
-    
-    // Set message and type
+
+
     notification.textContent = message;
     notification.className = `notification ${type}`;
-    
-    // Show notification
+
+
     notification.classList.add('show');
-    
-    // Hide after 3 seconds
+
+
     setTimeout(() => {
         notification.classList.remove('show');
     }, 3000);

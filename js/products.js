@@ -1,6 +1,6 @@
-// products.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Tải sản phẩm cho tab active khi trang được tải
+
+document.addEventListener('DOMContentLoaded', function () {
+
     const activeTab = document.querySelector('.nav-pills .active');
     if (activeTab) {
         const tabId = activeTab.getAttribute('href');
@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         loadProducts();
     }
-    
-    // Thêm sự kiện cho các tab sản phẩm
+
+
     const productTabs = document.querySelectorAll('[data-bs-toggle="pill"]');
     productTabs.forEach(tab => {
         tab.addEventListener('shown.bs.tab', function (event) {
@@ -21,57 +21,57 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Hàm chuyển đổi tab ID thành danh mục
+
 function getCategoryFromTabId(tabId) {
-    // Giả sử tab-1 là "travel-backpack", tab-2 là "fashion-backpack", tab-3 là "special-offers"
+
     const tabCategories = {
         '#tab-1': ['handbag', 'women-handbag'],
         '#tab-2': ['backpack', 'fashion-backpack', 'travel-backpack'],
         '#tab-3': ['accessories', 'other']
     };
-    
+
     return tabCategories[tabId] || [];
 }
 
-// Hàm tải sản phẩm từ API và hiển thị
+
 async function loadProducts(categories = null) {
     try {
-        // Xác định container dựa trên danh mục
+
         let tabId = '#tab-1'; // Default tab
         if (categories) {
-            // Reverse lookup to find the tab from categories
+
             for (const [key, value] of Object.entries(getCategoryMapping())) {
-                if (Array.isArray(categories) && 
-                    categories.some(cat => value.includes(cat)) || 
+                if (Array.isArray(categories) &&
+                    categories.some(cat => value.includes(cat)) ||
                     value.includes(categories)) {
                     tabId = key;
                     break;
                 }
             }
         }
-        
+
         const container = document.querySelector(tabId);
         if (!container) {
             console.error('Container not found');
             return;
         }
-        
-        // Hiển thị loading spinner
+
+
         showLoadingSpinner(container);
-        
-        // Fetch products
+
+
         const products = await fetchProducts(categories);
-        
-        // Hiển thị sản phẩm
+
+
         renderProducts(container, products);
-        
+
     } catch (error) {
         console.error('Error loading products:', error);
         showError(error);
     }
 }
 
-// Hàm để lấy mapping của tất cả categories
+
 function getCategoryMapping() {
     return {
         '#tab-1': ['handbag', 'women-handbag'],
@@ -80,10 +80,10 @@ function getCategoryMapping() {
     };
 }
 
-// Hàm fetch sản phẩm từ API - Tương tự như trong product-loader.js
+
 async function fetchProducts(categories) {
     if (!categories || (Array.isArray(categories) && categories.length === 0)) {
-        // If no categories specified, fetch all products
+
         try {
             const response = await fetch(`http://localhost:3000/api/products`);
             if (!response.ok) {
@@ -96,29 +96,29 @@ async function fetchProducts(categories) {
             throw error;
         }
     }
-    
-    // If we have categories to filter by
+
+
     const baseUrl = 'http://localhost:3000/api/products';
     const allProducts = [];
-    
+
     try {
-        // Convert single category to array if needed
+
         const categoryArray = Array.isArray(categories) ? categories : [categories];
-        
-        // Fetch each category separately to prevent stream reading errors
+
+
         for (const category of categoryArray) {
             const response = await fetch(`${baseUrl}?category=${category}`);
             if (!response.ok) {
                 console.warn(`Failed to fetch products for category "${category}"`);
                 continue;
             }
-            
+
             const data = await response.json();
             if (data.products && Array.isArray(data.products)) {
                 allProducts.push(...data.products);
             }
         }
-        
+
         return allProducts;
     } catch (error) {
         console.error('Error fetching products by categories:', error);
@@ -126,7 +126,7 @@ async function fetchProducts(categories) {
     }
 }
 
-// Hiển thị loading spinner
+
 function showLoadingSpinner(container) {
     const productRow = container.querySelector('.row');
     if (productRow) {
@@ -140,59 +140,59 @@ function showLoadingSpinner(container) {
     }
 }
 
-// Hiển thị lỗi nếu có
+
 function showError(error) {
     console.error('Error:', error);
-    // Implement error display functionality if needed
+
 }
 
-// Hàm hiển thị sản phẩm
+
 function renderProducts(container, products) {
-    // Tìm phần tử row để chứa sản phẩm
+
     const productRow = container.querySelector('.row');
-    
+
     if (!productRow) {
         console.error('Product row not found in container');
         return;
     }
-    
-    // Xóa nội dung cũ
+
+
     const seeMoreButton = productRow.querySelector('.text-center.wow.fadeInUp');
     productRow.innerHTML = '';
-    
+
     if (products.length === 0) {
         productRow.innerHTML = '<div class="col-12 text-center">Không có sản phẩm nào.</div>';
         return;
     }
-    
-    // Tạo HTML cho từng sản phẩm
+
+
     products.forEach((product, index) => {
         const productHTML = createProductHTML(product, index);
         productRow.innerHTML += productHTML;
     });
-    
-    // Thêm lại nút "See More Products" nếu có
+
+
     if (seeMoreButton) {
         productRow.appendChild(seeMoreButton);
     }
-    
-    // Thiết lập lại sự kiện cho các nút "Add to cart"
+
+
     setupAddToCartButtons();
-    
-    // Initialize WOW animations
+
+
     new WOW().init();
 }
 
-// Hàm tạo HTML cho sản phẩm
+
 function createProductHTML(product, index) {
     const delay = 0.1 + (index % 4) * 0.2; // Delay cho animation
-    const discountHTML = product.discount_percent ? 
+    const discountHTML = product.discount_percent ?
         `<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">-${product.discount_percent}%</div>` :
         `<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>`;
-    
-    const originalPriceHTML = product.original_price ? 
+
+    const originalPriceHTML = product.original_price ?
         `<span class="text-body text-decoration-line-through">${formatPrice(product.original_price)} ₫</span>` : '';
-    
+
     return `
     <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="${delay}s">
         <div class="product-item">
@@ -226,7 +226,7 @@ function createProductHTML(product, index) {
     `;
 }
 
-// Hàm định dạng giá tiền
+
 function formatPrice(price) {
     return parseFloat(price).toLocaleString('vi-VN');
 }
